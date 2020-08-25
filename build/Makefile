@@ -126,6 +126,33 @@ SnakeGame/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/build
 .PHONY : SnakeGame/fast
 
+src/barrier.o: src/barrier.cpp.o
+
+.PHONY : src/barrier.o
+
+# target to build an object file
+src/barrier.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/barrier.cpp.o
+.PHONY : src/barrier.cpp.o
+
+src/barrier.i: src/barrier.cpp.i
+
+.PHONY : src/barrier.i
+
+# target to preprocess a source file
+src/barrier.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/barrier.cpp.i
+.PHONY : src/barrier.cpp.i
+
+src/barrier.s: src/barrier.cpp.s
+
+.PHONY : src/barrier.s
+
+# target to generate assembly for a file
+src/barrier.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/barrier.cpp.s
+.PHONY : src/barrier.cpp.s
+
 src/controller.o: src/controller.cpp.o
 
 .PHONY : src/controller.o
@@ -270,6 +297,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... SnakeGame"
 	@echo "... edit_cache"
+	@echo "... src/barrier.o"
+	@echo "... src/barrier.i"
+	@echo "... src/barrier.s"
 	@echo "... src/controller.o"
 	@echo "... src/controller.i"
 	@echo "... src/controller.s"

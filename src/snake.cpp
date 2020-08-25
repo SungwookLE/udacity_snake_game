@@ -5,8 +5,7 @@
 void Snake::Update() {
   SDL_Point prev_cell{
       static_cast<int>(head_x),
-      static_cast<int>(
-          head_y)};  // We first capture the head's cell before updating.
+      static_cast<int>(head_y)};  // We first capture the head's cell before updating.
   UpdateHead();
   SDL_Point current_cell{
       static_cast<int>(head_x),
@@ -41,6 +40,9 @@ void Snake::UpdateHead() {
   // Wrap the Snake around to the beginning if going off of the screen.
   head_x = fmod(head_x + grid_width, grid_width);
   head_y = fmod(head_y + grid_height, grid_height);
+
+
+
 }
 
 void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
