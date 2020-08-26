@@ -20,10 +20,8 @@ class Game {
  private:
   Snake snake;
   SDL_Point food;
-  Barrier barrier;
-  std::size_t grid_width;
-  std::size_t grid_heigth;
-
+  std::shared_ptr<Barrier> barrier;
+  
   std::random_device dev;
   std::mt19937 engine;
   std::uniform_int_distribution<int> random_w;

@@ -4,14 +4,12 @@
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
-      barrier(grid_width, grid_height),
       engine(dev()),
-      random_w(0, static_cast<int>(grid_width)),
-      random_h(0, static_cast<int>(grid_height)),
-      grid_width(static_cast<int>(grid_width)),
-      grid_heigth(static_cast<int>(grid_height))  {
-  PlaceFood();
-}
+      random_w(0, static_cast<int>(grid_width)-1),
+      random_h(0, static_cast<int>(grid_height)-1)
+      {PlaceFood();
+        barrier = std::make_shared<Barrier>(grid_width, grid_height);
+      }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
@@ -57,13 +55,13 @@ void Game::PlaceFood() {
   int x, y;
   while (true) {
     x = random_w(engine);
-        y = random_h(engine);
+    y = random_h(engine);
     //std::cout <<"(grid_width,grid_heigth): "<< grid_width<< ", "<< grid_heigth <<" (x,y): "<< x <<", "<< y << std::endl;
     // Check that the location is not occupied by a snake item before placing
     // food.
-    if ( (!snake.SnakeCell(x, y)) && (!barrier.BarrierCell(x,y)) )  {
-      food.x = (x>0 && x<grid_width)? x:( (x<0)? 1: (x>(grid_width-1))? (grid_width):x );
-      food.y = (y>0 && y<grid_heigth)? y:( (y<0)? 1: (y>(grid_heigth-1))? (grid_heigth):y );
+    if ( (!snake.SnakeCell(x, y)) && (!barrier->BarrierCell(x,y)) )  {
+      food.x = x;
+      food.y = y; 
       return;
     }
   }
@@ -72,15 +70,15 @@ void Game::PlaceFood() {
 void Game::Update() {
   if (!snake.alive) return;
 
-  snake.Update();
+  snake.Update(barrier);
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
 
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
+    barrier->Update(score);
     PlaceFood();
-    barrier.Update(score);
     // Grow snake and increase speed.
     snake.GrowBody();
     snake.speed += 0.02;

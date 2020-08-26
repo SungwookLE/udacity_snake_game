@@ -28,17 +28,14 @@ void Barrier::Update(int score)
     
 
     for (auto &point : barrier_body){
-        if (point.x > grid_width || point.y > grid_height){
-            point.x = fmod(point.x + grid_width, grid_width);
-            point.y = fmod(point.y + grid_height, grid_height);
-        }
-        if ( (point.x == 0) || (point.x == grid_width) ){
-            std::cout << "point.x: " << point.x << std::endl;
+        point.x = fmod(point.x + grid_width, grid_width);
+        point.y = fmod(point.y + grid_height, grid_height);
+       
+        if ( (point.x == grid_width )|| (point.x == 0)   ){
             point.x = -1;
         }
 
-        if ( (point.y == 0) || (point.y == grid_height) ){
-            std::cout << "point.y: " << point.y << std::endl;
+        if (  (point.y == grid_height ) || (point.y == 0) ){
             point.y = -1;
         }
     }

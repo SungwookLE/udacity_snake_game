@@ -4,6 +4,7 @@
 CMakeFiles/SnakeGame.dir/src/barrier.cpp.o
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.cpp
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
+ /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h
@@ -48,6 +49,7 @@ CMakeFiles/SnakeGame.dir/src/barrier.cpp.o
  /usr/include/SDL2/begin_code.h
  /usr/include/SDL2/close_code.h
 CMakeFiles/SnakeGame.dir/src/controller.cpp.o
+ /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.cpp
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
@@ -243,6 +245,7 @@ CMakeFiles/SnakeGame.dir/src/renderer.cpp.o
  /usr/include/SDL2/begin_code.h
  /usr/include/SDL2/close_code.h
 CMakeFiles/SnakeGame.dir/src/snake.cpp.o
+ /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.cpp
  /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
  /usr/include/SDL2/SDL.h

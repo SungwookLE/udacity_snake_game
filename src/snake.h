@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "SDL.h"
+#include <memory>
+#include "barrier.h"
 
 class Snake {
  public:
@@ -14,7 +16,7 @@ class Snake {
         head_x(grid_width / 2),
         head_y(grid_height / 2) {}
 
-  void Update();
+  void Update(std::shared_ptr< Barrier > barr);
 
   void GrowBody();
   bool SnakeCell(int x, int y);
