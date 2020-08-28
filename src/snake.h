@@ -6,6 +6,8 @@
 #include <memory>
 #include "barrier.h"
 
+class Barrier;
+
 class Snake {
  public:
   enum class Direction { kUp, kDown, kLeft, kRight };
@@ -16,7 +18,7 @@ class Snake {
         head_x(grid_width / 2),
         head_y(grid_height / 2) {}
 
-  void Update(std::shared_ptr< Barrier > barr);
+  void Update(std::shared_ptr<Barrier> barr);
 
   void GrowBody();
   bool SnakeCell(int x, int y);
@@ -32,7 +34,7 @@ class Snake {
 
  private:
   void UpdateHead();
-  void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
+  void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell, std::shared_ptr<Barrier> barr);
 
   bool growing{false};
   int grid_width;

@@ -5,11 +5,12 @@
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
-      random_w(0, static_cast<int>(grid_width)-1),
-      random_h(0, static_cast<int>(grid_height)-1)
-      {PlaceFood();
-        barrier = std::make_shared<Barrier>(grid_width, grid_height);
-      }
+      random_w(0, static_cast<int>(grid_width) - 1),
+      random_h(0, static_cast<int>(grid_height) - 1)
+{
+  barrier = std::make_shared<Barrier>(grid_width, grid_height);
+  PlaceFood();
+}
 
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
