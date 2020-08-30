@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.cpp" "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/barrier.cpp.o"
   "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.cpp" "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/controller.cpp.o"
+  "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.cpp" "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/enemy.cpp.o"
   "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.cpp" "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/game.cpp.o"
   "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/main.cpp" "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/main.cpp.o"
   "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.cpp" "/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/build/CMakeFiles/SnakeGame.dir/src/renderer.cpp.o"

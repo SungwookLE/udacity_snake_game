@@ -6,6 +6,7 @@
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
+#include "enemy.h"
 
 #include "barrier.h"
 
@@ -19,8 +20,8 @@ class Game {
 
  private:
   Snake snake;
+  Enemy enemy;
   SDL_Point food;
-  int food_kind;
   std::shared_ptr<Barrier> barrier;
 
   std::random_device dev;

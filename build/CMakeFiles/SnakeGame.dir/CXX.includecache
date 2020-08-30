@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.cpp
-barrier.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
-
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
 SDL.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
@@ -19,6 +15,20 @@ random
 -
 snake.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
+
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.cpp
+enemy.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
+iostream
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/iostream
+
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
+snake.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
+SDL.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
+memory
+-
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 vector
