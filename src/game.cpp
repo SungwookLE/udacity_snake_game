@@ -76,18 +76,26 @@ void Game::Update() {
   enemy.Update(barrier);
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
-  enemy.FoodSearch(food);
+
+  int new_enemy_x=static_cast<int>(enemy.head_x);
+  int new_enemy_y=static_cast<int>(enemy.head_y);
+  enemy.FoodSearch(food, barrier);
+  enemy.ReStart();
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
     barrier->Update(score);
-    
     PlaceFood();
     // Grow snake and increase speed.
-    enemy.GrowBody();
     snake.GrowBody();
     snake.speed += 0.02;
   }
+  else if (food.x == new_enemy_x && food.y == new_enemy_y){
+    PlaceFood();
+    enemy.GrowBody();
+    enemy.speed += 0.01;
+  }
+
 }
 
 int Game::GetScore() const { return score; }
