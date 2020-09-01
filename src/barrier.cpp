@@ -53,7 +53,7 @@ void Barrier::Update(int score)
         }
     }
 }
-// 장애물 만나면 스네이크 못 지나가게끔 업데이트 ('20.8/25)
+
 
 bool Barrier::BarrierCell(int x, int y) {
   
