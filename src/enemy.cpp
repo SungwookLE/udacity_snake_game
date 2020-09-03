@@ -1,7 +1,7 @@
 #include "enemy.h"
 #include "iostream"
 
-Enemy::Enemy(int grid_width, int grid_height): Snake(grid_width, grid_height){}
+Enemy::Enemy(int grid_width, int grid_height) : Snake(grid_width, grid_height) {}
 
 void Enemy::FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr){
 
@@ -11,8 +11,6 @@ void Enemy::FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr){
 
     int x_err = current_cell.x - food.x;
     int y_err = current_cell.y - food.y;
-
-    movable_point[0] = {current_cell.x, current_cell.y, false};
 
     bool predict_right = Predict(Direction::kRight, barr);
     bool predict_left = Predict(Direction::kLeft, barr);
@@ -107,4 +105,5 @@ bool Enemy::Predict(Direction direc, std::shared_ptr<Barrier> barr){
 
     return predict_flag;
 }
+
 

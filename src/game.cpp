@@ -70,6 +70,7 @@ void Game::PlaceFood() {
 }
 
 void Game::Update() {
+
   if (!snake.alive) return;
 
   snake.Update(barrier);
@@ -125,3 +126,36 @@ void Game::fight(Snake& snake, Enemy& enemy){
       enemy.speed += 0.01;
     }
 }
+
+
+bool Game::dataIsAvailable(){
+        std::lock_guard<std::mutex> myLock(_mutex);
+        return !_enemies.empty();
+}
+
+Enemy Game::popBack(){
+        // perform vector modification under the lock
+        std::lock_guard<std::mutex> uLock(_mutex);
+
+        // remove last vector element from queue
+        Enemy v = std::move(_enemies.back());
+        _enemies.pop_back();
+        --_numEnemies;
+
+        return v; // will not be copied due to return value optimization (RVO) in C++
+}
+
+void Game::pushBack(Enemy &&v)
+    {
+        // simulate some work
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+        // perform vector modification under the lock
+        std::lock_guard<std::mutex> uLock(_mutex);
+
+        // add vector to queue
+        std::cout << "   Enemy #" << v.getID() << " will be added to the queue" << std::endl;
+        _enemies.emplace_back(std::move(v));
+        ++_numEnemies;
+    }
+

@@ -10,6 +10,8 @@
 
 #include "barrier.h"
 
+class Enemy;
+
 class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height);
@@ -18,6 +20,9 @@ class Game {
   int GetScore() const;
   int GetSize() const;
   void fight(Snake &snake, Enemy &enemy);
+  bool dataIsAvailable();
+  Enemy popBack();
+  void pushBack(Enemy &&v);
 
 private:
   Snake snake;
@@ -34,6 +39,11 @@ private:
 
   void PlaceFood();
   void Update();
+
+
+  std::mutex _mutex;
+  std::vector<Enemy> _enemies;
+  int _numEnemies{0};
 };
 
 #endif
