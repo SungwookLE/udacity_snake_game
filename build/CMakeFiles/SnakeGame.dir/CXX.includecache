@@ -16,11 +16,9 @@ random
 snake.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.cpp
-enemy.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
-iostream
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/iostream
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
+snake.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
 snake.h
@@ -31,6 +29,42 @@ memory
 -
 vector
 -
+
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.cpp
+game.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.h
+iostream
+-
+SDL.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
+
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.h
+random
+-
+SDL.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
+controller.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
+renderer.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
+snake.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
+enemy.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
+barrier.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
+
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
+vector
+-
+SDL.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
+snake.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
+barrier.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
+enemy.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 vector

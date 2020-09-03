@@ -6,36 +6,22 @@ void Barrier::Update(int score)
     x = random_w(engine);
     y = random_h(engine);
     
-    length = score*2;
+    length = score*3;
 
-    barrier_body.resize(length);
-    barrier_body[0].x =  x;
+    barrier_body.resize(length,{0,0});
+    barrier_body[0].x = x;
     barrier_body[0].y =  y;
 
-    if (score%4 == 1){
+    if (score%2== 1){
         for (int i = 1; i < length; i++){
-            barrier_body[i].x = barrier_body[i - 1].x + 1;
-            barrier_body[i].y = barrier_body[i - 1].y + 1;
+            barrier_body.at(i).x = barrier_body.at(i - 1).x + 1;
+            barrier_body.at(i).y = barrier_body.at(i - 1).y ;
         }
     }
-    else if (score%4 == 3)
-    {
-        for (int i = 1; i < length; i++){
-            barrier_body[i].x = barrier_body[i - 1].x + 1;
-            barrier_body[i].y = barrier_body[i - 1].y - 1;
-        }
-    }
-    else if (score%4 == 2){
-        for (int i = 1; i < length; i++){
-            barrier_body[i].x = barrier_body[i - 1].x + 1;
-            barrier_body[i].y = barrier_body[i - 1].y ;
-        }
-    }
-
     else{
         for (int i = 1; i < length; i++){
-            barrier_body[i].x = barrier_body[i - 1].x ;
-            barrier_body[i].y = barrier_body[i - 1].y + 1;
+            barrier_body.at(i).x = barrier_body.at(i - 1).x ;
+            barrier_body.at(i).y = barrier_body.at(i - 1).y + 1;
         }
     }
     

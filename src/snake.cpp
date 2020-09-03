@@ -17,6 +17,7 @@ void Snake::Update(std::shared_ptr<Barrier> barr) {
   if (current_cell.x != prev_cell.x || current_cell.y != prev_cell.y) {
     UpdateBody(current_cell, prev_cell, barr);
   }
+  
 }
 
 void Snake::UpdateHead() {
@@ -78,4 +79,15 @@ bool Snake::SnakeCell(int x, int y) {
     }
   }
   return false;
+}
+
+void Snake::Life(){
+    if (alive == false && Life_num>0){
+        body.clear();
+        speed = 0.1;
+        size = 1;
+        Life_num -= 1;
+        std::cout << "Life is gone: " << Life_num+1 << "[ea] remained" << std::endl;
+        alive = true;
+    }
 }

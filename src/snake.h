@@ -31,10 +31,13 @@ class Snake {
   float head_x;
   float head_y;
   std::vector<SDL_Point> body;
+  void Life();
 
  private:
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell, std::shared_ptr<Barrier> barr);
+  int Life_num{3};
+ 
 
   bool growing{false};
   int grid_width;

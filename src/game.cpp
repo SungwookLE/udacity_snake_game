@@ -80,7 +80,10 @@ void Game::Update() {
   int new_enemy_x=static_cast<int>(enemy.head_x);
   int new_enemy_y=static_cast<int>(enemy.head_y);
   enemy.FoodSearch(food, barrier);
+  fight(snake, enemy);
+  snake.Life();
   enemy.ReStart();
+
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
@@ -100,3 +103,25 @@ void Game::Update() {
 
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
+
+void Game::fight(Snake& snake, Enemy& enemy){
+  SDL_Point snake_head{
+      static_cast<int>(snake.head_x),
+      static_cast<int>(snake.head_y)};
+
+  SDL_Point enemy_head{
+      static_cast<int>(enemy.head_x),
+      static_cast<int>(enemy.head_y)};
+  
+    if (snake_head.x == static_cast<int>(enemy.body.begin()->x) && snake_head.y == static_cast<int>(enemy.body.begin()->y) &&enemy.size >1){
+      enemy.alive = false;
+      snake.GrowBody();
+      snake.speed += 0.02;
+    }
+
+    if (enemy_head.x == static_cast<int>(snake.body.begin()->x) && enemy_head.y == static_cast<int>(snake.body.begin()->y) && snake.size >1){
+      snake.alive = false;
+      enemy.GrowBody();
+      enemy.speed += 0.01;
+    }
+}

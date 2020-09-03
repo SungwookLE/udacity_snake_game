@@ -47,20 +47,33 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
-
-  // Render food
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
-  block.x = food.x * block.w;
-  block.y = food.y * block.h;
-  SDL_RenderFillRect(sdl_renderer, &block);
-
+  
   // Render barrier
-  SDL_SetRenderDrawColor(sdl_renderer, 0x2C, 0x2D, 0x1E, 0x2D);
+  SDL_SetRenderDrawColor(sdl_renderer, 0xAD, 0x2D, 0x1E, 0x2D);
   for (SDL_Point const &point : barrier->barrier_body ){
     block.x = point.x * block.w;
     block.y = point.y * block.h;
     SDL_RenderFillRect(sdl_renderer, &block);
   }
+
+ // Render enemy's body
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+  for (SDL_Point const &point : enemy.body) {
+    block.x = point.x * block.w;
+    block.y = point.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+
+  // Render enemy's head
+  block.x = static_cast<int>(enemy.head_x) * block.w;
+  block.y = static_cast<int>(enemy.head_y) * block.h;
+  if (enemy.alive) {
+    SDL_SetRenderDrawColor(sdl_renderer, 0xF0, 0x71, 0xC1, 0xFF);
+  } else {
+    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
+  }
+  SDL_RenderFillRect(sdl_renderer, &block);
+
 
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -80,27 +93,11 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<
   }
   SDL_RenderFillRect(sdl_renderer, &block);
 
- // Render enemy's body
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-  for (SDL_Point const &point : enemy.body) {
-    block.x = point.x * block.w;
-    block.y = point.y * block.h;
-    SDL_RenderFillRect(sdl_renderer, &block);
-  }
-
-  // Render enemy's head
-  block.x = static_cast<int>(enemy.head_x) * block.w;
-  block.y = static_cast<int>(enemy.head_y) * block.h;
-  if (enemy.alive) {
-    SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
-  } else {
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
-  }
+  // Render food
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
+  block.x = food.x * block.w;
+  block.y = food.y * block.h;
   SDL_RenderFillRect(sdl_renderer, &block);
-
-
-
-
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);

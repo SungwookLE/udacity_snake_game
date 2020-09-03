@@ -73,8 +73,9 @@ void Enemy::ReStart(){
         body.clear();
         speed = 0.1;
         i++;
+        size = 1;
     }
-    if (i%50==49)
+    if (i%100==99)
         alive = true;
 }
 
