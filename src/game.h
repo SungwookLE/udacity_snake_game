@@ -7,7 +7,9 @@
 #include "renderer.h"
 #include "snake.h"
 #include "enemy.h"
-
+#include <thread>
+#include <chrono>
+#include <future>
 #include "barrier.h"
 
 class Enemy;
@@ -20,9 +22,7 @@ class Game {
   int GetScore() const;
   int GetSize() const;
   void fight(Snake &snake, Enemy &enemy);
-  bool dataIsAvailable();
-  Enemy popBack();
-  void pushBack(Enemy &&v);
+
 
 private:
   Snake snake;
@@ -40,10 +40,9 @@ private:
   void PlaceFood();
   void Update();
 
-
-  std::mutex _mutex;
-  std::vector<Enemy> _enemies;
-  int _numEnemies{0};
+  std::shared_ptr<Enemy> queue(new Enemy);
+  std::vector<std::future<void>> futures;
+ 
 };
 
 #endif

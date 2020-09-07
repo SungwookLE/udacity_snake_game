@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include <memory>
 #include "barrier.h"
+#include <thread>
 
 class Barrier;
 

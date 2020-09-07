@@ -17,10 +17,11 @@ class Enemy: public Snake{
     void ReStart();
     bool Predict(Direction direc, std::shared_ptr<Barrier> barr);
     int getID() { return _id; }
-    
+    void psuhBack(Enemy &&v);
 
-    private:
+private:
     int _id{0};
+     std::mutex _mutex;
 };
 
 #endif

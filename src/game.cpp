@@ -2,13 +2,16 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height)
+Game::Game(std::size_t grid_width, std::size_t grid_height, int number_of_enemy)
     : snake(grid_width, grid_height),
-      enemy(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width) - 1),
       random_h(0, static_cast<int>(grid_height) - 1)
 {
+  for (int i = 0; i < number_of_enemy; ++i){
+    Enemy enem(grid_width, grid_height);
+    futures.emplace_back(std::async(std::launch::async, &Enemy::pushBack, queue, std::move(enem)));
+  }
   barrier = std::make_shared<Barrier>(grid_width, grid_height);
   PlaceFood();
 }
@@ -70,21 +73,34 @@ void Game::PlaceFood() {
 }
 
 void Game::Update() {
+  int test = 0;
+  if (!snake.alive)
+    return;
 
-  if (!snake.alive) return;
+ 
+  std::thread t1(&Snake::Update, &snake, barrier);
+  std::thread t2(&Enemy::Update, &enemy, barrier);
+  // snake.Update(barrier);
+  // enemy.Update(barrier);
 
-  snake.Update(barrier);
-  enemy.Update(barrier);
+  t1.join();
+  t2.join();
+  // std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+  // std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
+  // std::chrono::nanoseconds nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+  // std::cout << nsec.count() << " ns" << std::endl;
+
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
 
   int new_enemy_x=static_cast<int>(enemy.head_x);
   int new_enemy_y=static_cast<int>(enemy.head_y);
+
   enemy.FoodSearch(food, barrier);
   fight(snake, enemy);
   snake.Life();
   enemy.ReStart();
-
+  
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
@@ -127,35 +143,4 @@ void Game::fight(Snake& snake, Enemy& enemy){
     }
 }
 
-
-bool Game::dataIsAvailable(){
-        std::lock_guard<std::mutex> myLock(_mutex);
-        return !_enemies.empty();
-}
-
-Enemy Game::popBack(){
-        // perform vector modification under the lock
-        std::lock_guard<std::mutex> uLock(_mutex);
-
-        // remove last vector element from queue
-        Enemy v = std::move(_enemies.back());
-        _enemies.pop_back();
-        --_numEnemies;
-
-        return v; // will not be copied due to return value optimization (RVO) in C++
-}
-
-void Game::pushBack(Enemy &&v)
-    {
-        // simulate some work
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-        // perform vector modification under the lock
-        std::lock_guard<std::mutex> uLock(_mutex);
-
-        // add vector to queue
-        std::cout << "   Enemy #" << v.getID() << " will be added to the queue" << std::endl;
-        _enemies.emplace_back(std::move(v));
-        ++_numEnemies;
-    }
 

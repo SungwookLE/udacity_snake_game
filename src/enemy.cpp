@@ -106,4 +106,10 @@ bool Enemy::Predict(Direction direc, std::shared_ptr<Barrier> barr){
     return predict_flag;
 }
 
+void Enemy::psuhBack(Enemy &&v){
+
+    /// (HERE : 9/7)
+
+}
+
 

@@ -30,12 +30,12 @@ void Barrier::Update(int score)
         point.x = fmod(point.x + grid_width, grid_width);
         point.y = fmod(point.y + grid_height, grid_height);
        
-        if ( (point.x == grid_width )|| (point.x == 0)   ){
-            point.x = -1;
+        if ( (point.x == grid_width )   ){
+            point.x -= 1;
         }
 
-        if (  (point.y == grid_height ) || (point.y == 0) ){
-            point.y = -1;
+        if (  (point.y == grid_height )  ){
+            point.y -= 1;
         }
     }
 }
