@@ -3,6 +3,8 @@
 #include "game.h"
 #include "renderer.h"
 
+std::mutex Enemy::mtx;
+
 int main() {
   constexpr std::size_t kFramesPerSecond{60};
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};

@@ -5,12 +5,12 @@
 #include "SDL.h"
 #include <memory>
 #include <vector>
-#include <mutex>
 #include <future>
-
+#include <thread>
+#include <chrono>
+#include <mutex>
 
 class Enemy: public Snake{
-
     public:
     Enemy(int grid_width, int grid_height);
     void FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr);
@@ -18,10 +18,12 @@ class Enemy: public Snake{
     bool Predict(Direction direc, std::shared_ptr<Barrier> barr);
     int getID() { return _id; }
     void psuhBack(Enemy &&v);
+    std::vector<Enemy> enemies;
+    
 
 private:
     int _id{0};
-     std::mutex _mutex;
+    static std::mutex mtx;
 };
 
 #endif

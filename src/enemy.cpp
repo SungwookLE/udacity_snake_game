@@ -1,7 +1,7 @@
 #include "enemy.h"
-#include "iostream"
+#include <iostream>
 
-Enemy::Enemy(int grid_width, int grid_height) : Snake(grid_width, grid_height) {}
+Enemy::Enemy(int grid_width, int grid_height) : Snake(grid_width, grid_height) { }
 
 void Enemy::FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr){
 
@@ -107,9 +107,9 @@ bool Enemy::Predict(Direction direc, std::shared_ptr<Barrier> barr){
 }
 
 void Enemy::psuhBack(Enemy &&v){
-
-    /// (HERE : 9/7)
-
+    mtx.lock();
+    enemies.push_back(std::move(v));
+    std::cout << "ID: " << std::this_thread::get_id() << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    mtx.unlock();
 }
-
-

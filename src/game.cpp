@@ -2,19 +2,18 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height, int number_of_enemy)
+Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
+      enemy(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width) - 1),
-      random_h(0, static_cast<int>(grid_height) - 1)
-{
-  for (int i = 0; i < number_of_enemy; ++i){
-    Enemy enem(grid_width, grid_height);
-    futures.emplace_back(std::async(std::launch::async, &Enemy::pushBack, queue, std::move(enem)));
-  }
-  barrier = std::make_shared<Barrier>(grid_width, grid_height);
-  PlaceFood();
-}
+      random_h(0, static_cast<int>(grid_height) - 1),
+      grid_width_(grid_width),
+      grid_height_(grid_height)
+      {
+      barrier = std::make_shared<Barrier>(grid_width, grid_height);
+      PlaceFood();
+      }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
@@ -73,42 +72,49 @@ void Game::PlaceFood() {
 }
 
 void Game::Update() {
+ 
   int test = 0;
   if (!snake.alive)
     return;
 
- 
-  std::thread t1(&Snake::Update, &snake, barrier);
-  std::thread t2(&Enemy::Update, &enemy, barrier);
-  // snake.Update(barrier);
-  // enemy.Update(barrier);
-
-  t1.join();
-  t2.join();
-  // std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
-  // std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
-  // std::chrono::nanoseconds nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-  // std::cout << nsec.count() << " ns" << std::endl;
-
-  int new_x = static_cast<int>(snake.head_x);
-  int new_y = static_cast<int>(snake.head_y);
-
-  int new_enemy_x=static_cast<int>(enemy.head_x);
-  int new_enemy_y=static_cast<int>(enemy.head_y);
-
-  enemy.FoodSearch(food, barrier);
-  fight(snake, enemy);
-  snake.Life();
-  enemy.ReStart();
+  /*
+  for (int i = 0; i < 2; ++i){
+    Enemy enem(grid_width_, grid_height_);
+    futures.emplace_back( std::async(std::launch::async, &Enemy::psuhBack, &enemy, std::move(enem)) );
+  }
+  std::for_each(futures.begin(), futures.end(), [](std::future<void> &ftr) { ftr.wait(); });
+  // 음 이게 아니라 각각의 에너미 객체를 일단 만들어 놓고 이 에너미 객체들의 각각의 행동들을 멀티 쓰레드로 가게 만들어 두면 되겠다. (9/8)
   
-  // Check if there's food over here
-  if (food.x == new_x && food.y == new_y) {
-    score++;
-    barrier->Update(score);
-    PlaceFood();
-    // Grow snake and increase speed.
-    snake.GrowBody();
-    snake.speed += 0.02;
+  */
+ 
+  snake.Update(barrier);
+  enemy.Update(barrier);
+
+    // std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+    // std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
+    // std::chrono::nanoseconds nsec = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    // std::cout << nsec.count() << " ns" << std::endl;
+
+    int new_x = static_cast<int>(snake.head_x);
+    int new_y = static_cast<int>(snake.head_y);
+
+    int new_enemy_x = static_cast<int>(enemy.head_x);
+    int new_enemy_y = static_cast<int>(enemy.head_y);
+   
+    enemy.FoodSearch(food, barrier);
+    fight(snake, enemy);
+    snake.Life();
+    enemy.ReStart();
+
+    // Check if there's food over here
+    if (food.x == new_x && food.y == new_y)
+    {
+      score++;
+      barrier->Update(score);
+      PlaceFood();
+      // Grow snake and increase speed.
+      snake.GrowBody();
+      snake.speed += 0.02;
   }
   else if (food.x == new_enemy_x && food.y == new_enemy_y){
     PlaceFood();

@@ -10,6 +10,7 @@
 #include <thread>
 #include <chrono>
 #include <future>
+#include <algorithm>
 #include "barrier.h"
 
 class Enemy;
@@ -22,6 +23,7 @@ class Game {
   int GetScore() const;
   int GetSize() const;
   void fight(Snake &snake, Enemy &enemy);
+  std::vector<std::future<void>> futures;
 
 
 private:
@@ -39,10 +41,8 @@ private:
 
   void PlaceFood();
   void Update();
-
-  std::shared_ptr<Enemy> queue(new Enemy);
-  std::vector<std::future<void>> futures;
- 
+  int grid_width_;
+  int grid_height_;
 };
 
 #endif
