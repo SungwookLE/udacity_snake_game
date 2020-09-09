@@ -12,17 +12,15 @@
 
 class Enemy: public Snake{
     public:
-    Enemy(int grid_width, int grid_height);
+    Enemy(int grid_width, int grid_height, int id);
     void FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr);
     void ReStart();
     bool Predict(Direction direc, std::shared_ptr<Barrier> barr);
     int getID() { return _id; }
-    void psuhBack(Enemy &&v);
-    std::vector<Enemy> enemies;
-    
+    void Update(std::shared_ptr<Barrier> barr);
 
 private:
-    int _id{0};
+    int _id;
     static std::mutex mtx;
 };
 

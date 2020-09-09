@@ -10,7 +10,7 @@ void Barrier::Update(int score)
 
     barrier_body.resize(length,{0,0});
     barrier_body[0].x = x;
-    barrier_body[0].y =  y;
+    barrier_body[0].y = y;
 
     if (score%2== 1){
         for (int i = 1; i < length; i++){

@@ -38,14 +38,6 @@ chrono
 mutex
 -
 
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.cpp
-game.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.h
-iostream
--
-SDL.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
-
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.h
 random
 -
@@ -69,6 +61,16 @@ algorithm
 -
 barrier.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
+
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/main.cpp
+iostream
+-
+controller.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
+game.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.h
+renderer.h
+/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
 vector

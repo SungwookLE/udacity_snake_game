@@ -5,6 +5,7 @@
 
 void Snake::Update(std::shared_ptr<Barrier> barr) {
   //std::cout << "thread #" << std::this_thread::get_id() << std::endl;
+  
   SDL_Point prev_cell{
       static_cast<int>(head_x),
       static_cast<int>(head_y)}; // We first capture the head's cell before updating.
@@ -17,8 +18,14 @@ void Snake::Update(std::shared_ptr<Barrier> barr) {
   // cell.
   if (current_cell.x != prev_cell.x || current_cell.y != prev_cell.y) {
     UpdateBody(current_cell, prev_cell, barr);
+    count_hold = 0;
   }
-  
+  else if ( current_cell.x == prev_cell.x || current_cell.y == prev_cell.y)
+    count_hold += 1;
+    if (count_hold > 200 && alive==true){
+      alive = false;
+      std::cout << "Enemy snake is dead because of stuck!\n";
+      }
 }
 
 void Snake::UpdateHead() {

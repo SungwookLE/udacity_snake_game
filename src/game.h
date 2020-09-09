@@ -17,18 +17,19 @@ class Enemy;
 
 class Game {
  public:
-  Game(std::size_t grid_width, std::size_t grid_height);
+  Game(std::size_t grid_width, std::size_t grid_height, int num_of_enemy);
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
-  void fight(Snake &snake, Enemy &enemy);
+  void fight(Snake &snake, std::vector<std::shared_ptr<Enemy>>  enemy, int num_of_enemy);
+
   std::vector<std::future<void>> futures;
 
 
 private:
   Snake snake;
-  Enemy enemy;
+  
   SDL_Point food;
   std::shared_ptr<Barrier> barrier;
 
@@ -37,12 +38,12 @@ private:
   std::uniform_int_distribution<int> random_w;
   std::uniform_int_distribution<int> random_h;
 
-  int score{0};
+  std::vector<std::shared_ptr<Enemy>> enemies;
 
+  int score{0};
   void PlaceFood();
   void Update();
-  int grid_width_;
-  int grid_height_;
+  int _num_of_enemy;
 };
 
 #endif
