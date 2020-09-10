@@ -1,6 +1,5 @@
 #include "game.h"
 #include <iostream>
-#include "SDL.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height, int num_of_enemy)
     : snake(grid_width, grid_height),
@@ -29,11 +28,14 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
+    //std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
     controller.HandleInput(running, snake);
     Update();
-    renderer.Render(snake, food, barrier, enemies ,_num_of_enemy);
+    renderer.Render(snake, food, barrier, enemies ,_num_of_enemy, static_cast<Renderer::kind_of_food>(kind_of_food_));
+    //std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
     frame_end = SDL_GetTicks();
-
+    //std::chrono::nanoseconds msec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    //std::cout << msec.count() << " ms" << std::endl;
     // Keep track of how long each loop through the input/update/render cycle
     // takes.
     frame_count++;
@@ -60,6 +62,16 @@ void Game::PlaceFood() {
   while (true) {
     x = random_w(engine);
     y = random_h(engine);
+
+    if (x%8 ==0 )
+      kind_of_food_ = kind_of_food::double_up;
+    else if (x%8 == 1 )
+      kind_of_food_ = kind_of_food::kill;
+    else if (x%8 == 2)
+      kind_of_food_ = kind_of_food::life_up;
+    else
+      kind_of_food_ = kind_of_food::normal;
+
     //std::cout <<"(grid_width,grid_heigth): "<< grid_width<< ", "<< grid_heigth <<" (x,y): "<< x <<", "<< y << std::endl;
     // Check that the location is not occupied by a snake item before placing
     // food.
@@ -74,7 +86,7 @@ void Game::PlaceFood() {
 void Game::Update() {
  
   int test = 0;
-  if (!snake.alive)
+  if (snake.get_Life() < 0 )
     return;
 
   /*
@@ -121,22 +133,53 @@ void Game::Update() {
 
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y){
-    score++;
+    score+=3;
     barrier->Update(score);
+
+    if (kind_of_food_ == kind_of_food::kill){
+      std::cout << "Kill anyone Bigger than ME!!!\n";
+      futures.clear();
+      for (int i = 0; i < _num_of_enemy; ++i){
+        std::shared_ptr<Enemy> temp_enemy = enemies.at(i);
+        futures.emplace_back(std::async(std::launch::async, &Enemy::kill_cond, temp_enemy, snake.size));
+      }
+      std::for_each(futures.begin(), futures.end(), [](std::future<void> &ftr) { ftr.wait(); });
+    }
+    else if  (kind_of_food_ == kind_of_food::double_up){
+      std::cout << "Bonus Score!\n";
+      score+=3;
+      snake.speed += 0.2;
+    }
+    else if ( kind_of_food_ == kind_of_food::life_up){
+      snake.plus_Life();
+      
+      std::cout << "Life Up!:"
+                << " Life is remained: " << snake.get_Life() << "[ea]!" << std::endl;
+    }
+
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
-    snake.speed += 0.02;
+    snake.speed += 0.1;
+
+    std::cout << "Congratulation: Snake(me) is growing! Score: " << score << std::endl;
+    
   }
   else{
     for (int i = 0; i < _num_of_enemy; ++i){
       int new_enemy_x = static_cast<int>(enemies.at(i)->head_x);
       int new_enemy_y = static_cast<int>(enemies.at(i)->head_y);
       if (food.x == new_enemy_x && food.y == new_enemy_y){
+        
+        enemies.at(i)->enemy_score += 1;
+        barrier->Update(enemies.at(i)->enemy_score);
+        if (kind_of_food_ == kind_of_food::double_up){
+          enemies.at(i)->speed += 0.2;
+        }
         PlaceFood();
         enemies.at(i)->GrowBody();
         enemies.at(i)->speed += 0.01;
-        std::cout << "Enemy snake #" << (i+1) << " is growing!\n";
+        std::cout << "Enemy snake #" << enemies.at(i)->getID() << " is growing!\n";
         }
       }
   }
@@ -160,15 +203,17 @@ void Game::fight(Snake& snake, std::vector<std::shared_ptr<Enemy>> enemy, int nu
     {
       enemy.at(i)->alive = false;
       snake.GrowBody();
-      snake.speed += 0.02;
-      }
+      snake.speed += 0.03;
+      score+=1;
+      std::cout << "Congratulation: Snake(me) kill the Enemy snake #" << enemy.at(i)->getID() << "! Score: "<< score<< std::endl;
+    }
 
     if (enemy_head.x == static_cast<int>(snake.body.begin()->x) && enemy_head.y == static_cast<int>(snake.body.begin()->y) && snake.size >1){
       snake.alive = false;
       enemy.at(i)->GrowBody();
       enemy.at(i)->speed += 0.01;
+      std::cout << "Enemy snake #" << enemy.at(i)->getID() << " kills Snake(you)!" << std::endl;
     }
-
   }
 }
 

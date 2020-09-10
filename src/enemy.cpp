@@ -4,10 +4,12 @@
 Enemy::Enemy(int grid_width, int grid_height, int id) : Snake(grid_width, grid_height), _id(id) {
     head_x += (3*id);
     head_y += id;
-    std::cout << "Enemy snake #" << _id << " is added! \n";
+    std::cout << "Enemy snake #" << _id << " is staged! \n";
 }
 
 void Enemy::FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr){
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    //std::cout << "Enemy snake #" << this->getID() << " THREAD ID: 0x" <<std::this_thread::get_id() << std::endl;
 
     SDL_Point current_cell{
       static_cast<int>(head_x),
@@ -15,7 +17,7 @@ void Enemy::FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr){
     mtx.lock();
     int x_err = current_cell.x - food.x;
     int y_err = current_cell.y - food.y;
-    mtx.unlock();
+    
     bool predict_right = Predict(Direction::kRight, barr);
     bool predict_left = Predict(Direction::kLeft, barr);
     bool predict_up = Predict(Direction::kUp, barr);
@@ -99,18 +101,24 @@ void Enemy::FoodSearch(SDL_Point const food, std::shared_ptr<Barrier> barr){
             }
         }
     }
+    mtx.unlock();
 }
 
 void Enemy::ReStart(){
-    static int i = 0;
+    
     if (alive == false ){
         body.clear();
         speed = 0.1;
-        i++;
+        count_turn+=1;
         size = 1;
     }
-    if (i%100==99)
+    else{
+        count_turn = 0;
+    }
+
+    if (count_turn%70==69){
         alive = true;
+    }
 }
 
 bool Enemy::Predict(Direction direc, std::shared_ptr<Barrier> barr){
@@ -146,3 +154,7 @@ void Enemy::Update(std::shared_ptr<Barrier> barr)   {
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
     Snake::Update(barr);
     }
+ void Enemy::kill_cond(int size_num){
+     if (size >= size_num)
+         alive = false;
+ }

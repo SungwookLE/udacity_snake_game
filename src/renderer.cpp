@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 
-
 Renderer::Renderer(const std::size_t screen_width,
                    const std::size_t screen_height,
                    const std::size_t grid_width, const std::size_t grid_height)
@@ -39,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<Barrier> barrier, std::vector<std::shared_ptr<Enemy>> enemy, int const _num_of_enemy) { 
+void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<Barrier> barrier, std::vector<std::shared_ptr<Enemy>> enemy, int const _num_of_enemy, kind_of_food kind){
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -49,7 +48,7 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<
   SDL_RenderClear(sdl_renderer);
   
   // Render barrier
-  SDL_SetRenderDrawColor(sdl_renderer, 0xAD, 0x2D, 0x1E, 0x2D);
+  SDL_SetRenderDrawColor(sdl_renderer, 0x78, 0x78, 0x78, 0x00);
   for (SDL_Point const &point : barrier->barrier_body ){
     block.x = point.x * block.w;
     block.y = point.y * block.h;
@@ -58,7 +57,7 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<
 
   for (int i = 0; i < _num_of_enemy; ++i){
     // Render enemy's body
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0x00 );
     for (SDL_Point const &point : enemy.at(i)->body) {
       block.x = point.x * block.w;
       block.y = point.y * block.h;
@@ -77,7 +76,6 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<
 
   }
 
-
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   for (SDL_Point const &point : snake.body) {
@@ -92,15 +90,36 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, std::shared_ptr<
   if (snake.alive) {
     SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
   } else {
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
+    SDL_SetRenderDrawColor(sdl_renderer, 0x80, 0x00, 0x00, 0xFF);
   }
   SDL_RenderFillRect(sdl_renderer, &block);
 
+
   // Render food
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
-  block.x = food.x * block.w;
-  block.y = food.y * block.h;
-  SDL_RenderFillRect(sdl_renderer, &block);
+  if (kind == kind_of_food::double_up){
+    SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0xFF, 0xFF);
+    block.x = food.x * block.w;
+    block.y = food.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+  else if (kind == kind_of_food::kill){
+    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0xFF, 0xFF);
+    block.x = food.x * block.w;
+    block.y = food.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+  else if (kind == kind_of_food::life_up){
+    SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0xFF, 0x00, 0xFF);
+    block.x = food.x * block.w;
+    block.y = food.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
+  else{
+    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
+    block.x = food.x * block.w;
+    block.y = food.y * block.h;
+    SDL_RenderFillRect(sdl_renderer, &block);
+  }
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);

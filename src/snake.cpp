@@ -91,11 +91,19 @@ bool Snake::SnakeCell(int x, int y) {
 
 void Snake::Life(){
     if (alive == false && Life_num>0){
-        body.clear();
-        speed = 0.1;
-        size = 1;
+      turn += 1;
+      body.clear();
+      speed = 0.1;
+      size = 1;
+      if (turn ==1 ){
         Life_num -= 1;
-        std::cout << "Life is gone: " << Life_num+1 << "[ea] remained" << std::endl;
-        alive = true;
+        std::cout << "Life is remained: " << Life_num << "[ea]!" << std::endl;
+      }
     }
+    else{
+      turn = 0;
+    }
+
+    if (turn % 100 ==99)
+      alive = true;
 }

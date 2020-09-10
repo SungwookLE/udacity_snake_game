@@ -26,19 +26,22 @@ class Snake {
 
   Direction direction = Direction::kUp;
 
-  float speed{0.1f};
+  float speed{0.2f};
   int size{1};
   bool alive{true};
   float head_x;
   float head_y;
   std::vector<SDL_Point> body;
   void Life();
+  int get_Life() { return Life_num; }
+  void plus_Life() { Life_num += 1; }
 
- private:
+private:
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell, std::shared_ptr<Barrier> barr);
-  int Life_num{3};
+  int Life_num{30};
   int count_hold{0};
+  int turn;
 
   bool growing{false};
   int grid_width;

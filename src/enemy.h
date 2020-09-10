@@ -18,10 +18,13 @@ class Enemy: public Snake{
     bool Predict(Direction direc, std::shared_ptr<Barrier> barr);
     int getID() { return _id; }
     void Update(std::shared_ptr<Barrier> barr);
+    int enemy_score{0};
+    void kill_cond(int score_num);
 
 private:
     int _id;
     static std::mutex mtx;
+    int count_turn;
 };
 
 #endif
