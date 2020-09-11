@@ -10,7 +10,7 @@ void Barrier::Update(int score)
     int dice_num = dice(engine);
     //std::cout << "dice num: " << dice_num << std::endl;
     length = score * 2;
-    if (length> 80) length = 80;
+    if (length> 40) length = 40;
 
     barrier_body.resize(length,{0,0});
     barrier_body[0].x = x;

@@ -133,7 +133,7 @@ void Game::Update() {
 
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y){
-    score+=3;
+    score+=2;
     barrier->Update(score);
 
     if (kind_of_food_ == kind_of_food::kill){
@@ -147,8 +147,8 @@ void Game::Update() {
     }
     else if  (kind_of_food_ == kind_of_food::double_up){
       std::cout << "Bonus Score!\n";
-      score+=3;
-      snake.speed += 0.2;
+      score+=1;
+      snake.speed += 0.1;
     }
     else if ( kind_of_food_ == kind_of_food::life_up){
       snake.plus_Life();
@@ -174,11 +174,11 @@ void Game::Update() {
         enemies.at(i)->enemy_score += 1;
         barrier->Update(enemies.at(i)->enemy_score);
         if (kind_of_food_ == kind_of_food::double_up){
-          enemies.at(i)->speed += 0.2;
+          enemies.at(i)->speed += 0.02;
         }
         PlaceFood();
         enemies.at(i)->GrowBody();
-        enemies.at(i)->speed += 0.01;
+        enemies.at(i)->speed += 0.02;
         std::cout << "Enemy snake #" << enemies.at(i)->getID() << " is growing!\n";
         }
       }

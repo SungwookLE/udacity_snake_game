@@ -6,7 +6,7 @@
 std::mutex Enemy::mtx;
 
 int main() {
-  int num_of_enemies = 5;
+  int num_of_enemies = 3;
 
   
   constexpr std::size_t kFramesPerSecond{60};
@@ -18,6 +18,10 @@ int main() {
   
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
+  
+  //std::cout << "Number of Enemies: ";
+  //std::cin >> num_of_enemies;
+
   Game game(kGridWidth, kGridHeight, num_of_enemies);
   game.Run(controller, renderer, kMsPerFrame);
 
