@@ -225,8 +225,8 @@ void Game::fight(Snake& snake, std::vector<std::shared_ptr<Enemy>> enemy, int nu
   }
 }
 
-
-void Game::update_rank(int score_){
+template <typename T>
+void Game::update_rank(T score_){
   std::string user_name;
   
   std::cout << "USER NAME: ";
@@ -259,7 +259,7 @@ void Game::update_rank(int score_){
         << "SCORE\n";
     int rank_index = 1;
     for (auto it : hash_map){
-      out << "RANK" << rank_index << ": " << it.second << "\t"<<it.first << std::endl;
+      out << "RANK" << rank_index << ": " << it.second << "\t" <<it.first << std::endl;
       rank_index += 1;
     }
 }

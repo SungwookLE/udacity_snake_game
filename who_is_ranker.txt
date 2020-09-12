@@ -2,5 +2,6 @@
 	NAME SCORE
 RANK1: Wooks	927
 RANK2: SuminPig	916
-RANK3: nobody	4
-RANK4: HI	0
+RANK3: shit	7
+RANK4: nobody	4
+RANK5: HI	0

@@ -77,30 +77,49 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 - 3-2) The project reads data from a file and process the data, or the program writes data to a file:
   The project reads data from an external file or writes data to a file as part of the necessary operation of the program.
+  --> DONE: you can check the "update_rank" member function in game.cpp. the score and player name is recored (9/12)
 
 - 3-3) The project accepts user input and processes the input"
   The project accepts input from a user as part of the necessary operation of the program.
+  --> DONE: SDL_Event (9/12)
 
 4. Object Oriented Programming: CRITERIA MEETS SPECIFICATIONS
 
 - 4-1) The project uses Object Oriented Programming techniques:
   The project code is organized into classes with class attributes to hold the data, and class methods to perform tasks.
+  --> DONE: all class is organized into class (9/12)
+
 - 4-2) Classes use appropriate access specifiers for class members:
   All class data members are explicitly specified as public, protected, or private.
+  --> DONE (9/12)
+
 - 4-3) Class constructors utilize member initialization lists:
   All class members that are set to argument values are initialized through member initialization lists.
+  --> DONE (9/12)
+
 - 4-4) Classes abstract implementation details from their interfaces:
   All class member functions document their effects, either through function names, comments, or formal documentation. Member functions do not change program state in undocumented ways.
+  --> DONE (9/12)
+
 - 4-5) Classes encapsulate behavior:
   Appropriate data and functions are grouped into classes. Member data that is subject to an invariant is hidden from the user. State is accessed via member functions.
+  --> DONE (9/12)
+
 - 4-6) Classes follow an appropriate inheritance hierarchy:
   Inheritance hierarchies are logical. Composition is used instead of inheritance when appropriate. Abstract classes are composed of pure virtual functions. Override functions are specified.
+  --> DONE (9/12)
+
 - 4-7) Overloaded functions allow the same function to operate on different parameters:
   One function is overloaded with different signatures for the same function name.
+  --> DONE in enemy update member in enemy.cpp (9/12)
+
 - 4-8) Derived class functions override virtual base class functions:
   One member function in an inherited class overrides a virtual base class member function.
+  --> DONE (9/12) >>NOT YET
+
 - 4-9) Templates generalize functions in the project:
   One function is declared with a template that allows it to accept a generic parameter.
+  --> DONE in game.cpp template <typename T>void update*rank(T score*); (9/12)
 
 5. Memory Management: CRITERIA MEETS SPECIFICATIONS
 

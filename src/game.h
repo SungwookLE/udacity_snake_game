@@ -50,9 +50,9 @@ private:
   void Update(bool &runnig);
   int _num_of_enemy;
 
-  void update_rank(int score_);
+  template <typename T>
+  void update_rank(T score_);
   std::multimap<int, std::string, std::greater<int> > hash_map;
-
   std::string rank_file{"../who_is_ranker.txt"};
  
 };
