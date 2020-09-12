@@ -25,9 +25,7 @@ class Game {
   int GetScore() const;
   int GetSize() const;
   void fight(Snake &snake, std::vector<std::shared_ptr<Enemy>>  enemy, int num_of_enemy);
-
   std::vector<std::future<void>> futures;
-  
   kind_of_food kind_of_food_=kind_of_food::normal;
   
 private:
@@ -47,7 +45,7 @@ private:
 
   int score{0};
   void PlaceFood();
-  void Update();
+  void Update(bool &runnig);
   int _num_of_enemy;
 };
 

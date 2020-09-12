@@ -108,7 +108,7 @@ void Enemy::ReStart(){
     
     if (alive == false ){
         body.clear();
-        speed = 0.1;
+        speed = init_speed;
         count_turn+=1;
         size = 1;
     }

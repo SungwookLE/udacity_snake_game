@@ -26,7 +26,8 @@ class Snake {
 
   Direction direction = Direction::kUp;
 
-  float speed{0.1f};
+  float init_speed{0.08f};
+  float speed{init_speed};
   int size{1};
   bool alive{true};
   float head_x;
@@ -37,9 +38,10 @@ class Snake {
   void plus_Life() { Life_num += 1; }
 
 private:
+  
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell, std::shared_ptr<Barrier> barr);
-  int Life_num{30};
+  int Life_num{0};
   int count_hold{0};
   int turn;
 

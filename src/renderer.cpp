@@ -31,9 +31,26 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
+  gScreenSurface = SDL_GetWindowSurface(sdl_window);
+  loadMedia("../wooks.bmp");
+  //Apply the image
+  SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+  //Update the surface
+  SDL_UpdateWindowSurface(sdl_window);
+  SDL_Delay(5000);
 }
 
 Renderer::~Renderer() {
+
+  gScreenSurface = SDL_GetWindowSurface(sdl_window);
+  loadMedia("../GAMEOVER.bmp");
+  //Apply the image
+  SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+  //Update the surface
+  SDL_UpdateWindowSurface(sdl_window);
+  SDL_Delay(5000);
+
+
   SDL_DestroyWindow(sdl_window);
   SDL_Quit();
 }
@@ -129,5 +146,3 @@ void Renderer::UpdateWindowTitle(int score, int fps) {
   std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }
-
- 

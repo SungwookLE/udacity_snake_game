@@ -30,7 +30,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     //std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
     controller.HandleInput(running, snake);
-    Update();
+    Update(running);
     renderer.Render(snake, food, barrier, enemies ,_num_of_enemy, static_cast<Renderer::kind_of_food>(kind_of_food_));
     //std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
     frame_end = SDL_GetTicks();
@@ -55,6 +55,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       SDL_Delay(target_frame_duration - frame_duration);
     }
   }
+
+  SDL_Delay(500);
 }
 
 void Game::PlaceFood() {
@@ -83,12 +85,13 @@ void Game::PlaceFood() {
   }
 }
 
-void Game::Update() {
+void Game::Update(bool &runnig) {
  
   int test = 0;
-  if (snake.get_Life() < 0 )
-    return;
-
+  if (snake.get_Life() < 0 ){
+    std::cout << "Game OVER!" << std::endl;
+    runnig = false;
+  }
   /*
   for (int i = 0; i < 2; ++i){
     Enemy enem(grid_width_, grid_height_);
@@ -153,8 +156,8 @@ void Game::Update() {
     else if ( kind_of_food_ == kind_of_food::life_up){
       snake.plus_Life();
       
-      std::cout << "Life Up!:"
-                << " Life is remained: " << snake.get_Life() << "[ea]!" << std::endl;
+      std::cout << "Life Up:"
+                << " Life is Remained: " << snake.get_Life() << "[ea]! " << std::endl;
     }
 
     PlaceFood();
@@ -162,7 +165,7 @@ void Game::Update() {
     snake.GrowBody();
     snake.speed += 0.1;
 
-    std::cout << "Congratulation: Snake(me) is growing! Score: " << score << std::endl;
+    std::cout << "Snake(me) is growing! Score: " << score << std::endl;
     
   }
   else{
@@ -205,7 +208,7 @@ void Game::fight(Snake& snake, std::vector<std::shared_ptr<Enemy>> enemy, int nu
       snake.GrowBody();
       snake.speed += 0.03;
       score+=1;
-      std::cout << "Congratulation: Snake(me) kill the Enemy snake #" << enemy.at(i)->getID() << "! Score: "<< score<< std::endl;
+      std::cout << "Snake(me) kill the Enemy snake #" << enemy.at(i)->getID() << "! Score: "<< score<< std::endl;
     }
 
     if (enemy_head.x == static_cast<int>(snake.body.begin()->x) && enemy_head.y == static_cast<int>(snake.body.begin()->y) && snake.size >1){

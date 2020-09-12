@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=Debug
+CMAKE_BUILD_TYPE:STRING=
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -218,6 +218,12 @@ SDL2Test_SOURCE_DIR:STATIC=/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Gam
 //The directory containing a CMake configuration file for SDL2.
 SDL2_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/SDL2
 
+//Path to a file.
+SDL_IMAGE_INCLUDE_DIR:PATH=/usr/include/SDL
+
+//Path to a library.
+SDL_IMAGE_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libSDL_image.so
+
 
 ########################
 # INTERNAL cache entries
@@ -366,4 +372,10 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding SDL_image
+FIND_PACKAGE_MESSAGE_DETAILS_SDL_image:INTERNAL=[/usr/lib/x86_64-linux-gnu/libSDL_image.so][/usr/include/SDL][v1.2.12()]
+//ADVANCED property for variable: SDL_IMAGE_INCLUDE_DIR
+SDL_IMAGE_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SDL_IMAGE_LIBRARY
+SDL_IMAGE_LIBRARY-ADVANCED:INTERNAL=1
 
