@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.cpp
-barrier.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
-
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
 SDL.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
@@ -20,25 +16,9 @@ random
 snake.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.cpp
-controller.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
-iostream
--
-SDL.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/SDL.h
-snake.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
-
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
 snake.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
-
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.cpp
-enemy.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
-iostream
--
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
 snake.h
@@ -87,23 +67,13 @@ algorithm
 -
 barrier.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
-
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/main.cpp
-iostream
--
-controller.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/controller.h
-game.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/game.h
-renderer.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
-
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.cpp
-renderer.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
-iostream
+fstream
 -
 string
+-
+sstream
+-
+map
 -
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/renderer.h
@@ -117,14 +87,6 @@ barrier.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/barrier.h
 enemy.h
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/enemy.h
-
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.cpp
-cmath
--
-iostream
--
-snake.h
-/home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 
 /home/joker1251/Desktop/OWEN/CppND-Capstone-Snake-Game/src/snake.h
 vector

@@ -37,7 +37,7 @@ Renderer::Renderer(const std::size_t screen_width,
   SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
   //Update the surface
   SDL_UpdateWindowSurface(sdl_window);
-  SDL_Delay(5000);
+  SDL_Delay(2000);
 }
 
 Renderer::~Renderer() {
@@ -48,7 +48,7 @@ Renderer::~Renderer() {
   SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
   //Update the surface
   SDL_UpdateWindowSurface(sdl_window);
-  SDL_Delay(5000);
+  SDL_Delay(2000);
 
 
   SDL_DestroyWindow(sdl_window);

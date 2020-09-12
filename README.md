@@ -1,4 +1,4 @@
-# CPPND: Capstone Snake Game Example
+# CPPND: Capstone Snake Game: Wook's Snake
 
 This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
@@ -50,7 +50,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 - C++ Capstone Project (200823~) [RUBRICS](https://review.udacity.com/#!/rubrics/2533/view)
 
-1. README (All Rubric Points REQUIRED): CRITERIA MEETS SPECIFICATIONS
+1. README (All Rubric Points REQUIRED): CRITERIA MEETS SPECIFICATIONS --> DONE (9/12)
 
 - 1-1) A README with instructions is included with the project:
   The README is included with the project and has instructions for building/running the project.
@@ -62,7 +62,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 - 1-3) The README includes information about each rubric point addressed:
   The README indicates which rubric points are addressed. The README also indicates where in the code (i.e. files and line numbers) that the rubric points are addressed.
 
-2. Compiling and Testing (All Rubric Points REQUIRED): CRITERIA MEETS SPECIFICATIONS
+2. Compiling and Testing (All Rubric Points REQUIRED): CRITERIA MEETS SPECIFICATIONS --> DONE (9/12)
 
 - 2-1) The submission must compile and run:
   The project code must compile and run without errors.
@@ -73,8 +73,11 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 - 3-1) The project demonstrates an understanding of C++ functions and control structures:
   A variety of control structures are used in the project.
   The project code is clearly organized into functions.
+  --> DONE: you can check the various member function in game.cpp (9/12)
+
 - 3-2) The project reads data from a file and process the data, or the program writes data to a file:
   The project reads data from an external file or writes data to a file as part of the necessary operation of the program.
+
 - 3-3) The project accepts user input and processes the input"
   The project accepts input from a user as part of the necessary operation of the program.
 

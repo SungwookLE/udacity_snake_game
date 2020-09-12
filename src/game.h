@@ -12,6 +12,10 @@
 #include <future>
 #include <algorithm>
 #include "barrier.h"
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <map>
 
 //class Enemy;
 class Renderer;
@@ -32,8 +36,6 @@ private:
   Snake snake;
   
   SDL_Point food;
-  
-
   std::shared_ptr<Barrier> barrier;
 
   std::random_device dev;
@@ -47,6 +49,12 @@ private:
   void PlaceFood();
   void Update(bool &runnig);
   int _num_of_enemy;
+
+  void update_rank(int score_);
+  std::multimap<int, std::string, std::greater<int> > hash_map;
+
+  std::string rank_file{"../who_is_ranker.txt"};
+ 
 };
 
 #endif

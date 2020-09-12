@@ -55,7 +55,12 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       SDL_Delay(target_frame_duration - frame_duration);
     }
   }
-
+  int rank_index = 1;
+  update_rank(score);
+  for (auto it : hash_map){
+    std::cout <<"RANK"<< rank_index<< ": "<< it.second << "\t"<< it.first << std::endl;
+    rank_index += 1;
+  }
   SDL_Delay(500);
 }
 
@@ -221,3 +226,40 @@ void Game::fight(Snake& snake, std::vector<std::shared_ptr<Enemy>> enemy, int nu
 }
 
 
+void Game::update_rank(int score_){
+  std::string user_name;
+  
+  std::cout << "USER NAME: ";
+  std::cin >> user_name;
+
+  hash_map.insert(std::make_pair( score_, user_name));
+  
+  std::string score_rank, name_rank, temp, trash;
+  std::ifstream filestream(rank_file);
+  std::string line;
+  
+  
+  if (filestream.is_open())
+  {
+    while(std::getline(filestream, line)){
+      std::replace(line.begin(), line.end(), 'N', ' ');
+      std::istringstream linestream(line);
+      linestream >> temp >> trash>> name_rank >> score_rank;
+      if (temp=="RA"){
+        hash_map.insert(std::make_pair(std::stoi(score_rank), name_rank ));
+      }
+    }
+  }
+  filestream.close();
+
+  std::ofstream out(rank_file);
+    out << "** WHO IS RANKER IN WOOK'S SNAKE" << std::endl;
+    out << "\t"
+        << "NAME "
+        << "SCORE\n";
+    int rank_index = 1;
+    for (auto it : hash_map){
+      out << "RANK" << rank_index << ": " << it.second << "\t"<<it.first << std::endl;
+      rank_index += 1;
+    }
+}
