@@ -1,12 +1,22 @@
 # CPPND: Capstone Snake Game Example
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
 <img src="snake_game.gif"/>
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
+# Rule of this snake_game
 
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
+- 1. There are enemy snakes(color Pink) that try to eat the food as fast as possible. You(color sky blue) have to get the food faster than others
+- 2. There are barrier that kill snakes who contact their head to the barrier wall. Therefore You have to try to avoid the barrier
+  - This barrier updates according to the each snakes own score
+- 3. There are several kinds of food: normal(color yellow), double up(color blue), life up(color green), kill others(color magenta)
+  - normal: if you and enemies eat that food, your score and body grows, also moving speed gets faster
+  - double up: if you and enemies eat that food, your score and body grows doubles, also moving speed gets faster doubles
+  - life up: if you eat that food, your life(ea) grows up
+  - kill other: if you eat that food then, it works that if there are enemies that have more size of body than you, then they are killed
+- 4. You and enemy snakes fight each others, if you touch the tail of enemy snakes, then you kill that enemy, otherwise you can be kill by enemies
+
+- tip: if you dead, then your body is reset and head color is changed to dark red for a while
 
 ## Dependencies for Running Locally
 
