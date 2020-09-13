@@ -21,7 +21,10 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 4. You and enemy snakes fight each others, if you touch the tail of enemy snakes, then you kill that enemy, otherwise you can be kill by enemies
 
-5. Tip: if you dead, then your body is reset and head color is changed to dark red for a while, Enemis when dead are similar to you
+5. Tip:
+
+- if you dead, then your body is reset and head color is changed to dark red for a while, Enemis when dead are similar to you
+- it your head touch your tail, then you will die
 
 ## Dependencies for Running Locally
 
