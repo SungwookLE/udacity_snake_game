@@ -34,7 +34,7 @@ class Snake {
   float head_y;
   std::vector<SDL_Point> body;
   void Life();
-  int get_Life() { return Life_num; }
+  virtual int get_Life() { return Life_num; }
   void plus_Life() { Life_num += 1; }
 
 private:

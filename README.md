@@ -107,7 +107,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 - 4-6) Classes follow an appropriate inheritance hierarchy:
   Inheritance hierarchies are logical. Composition is used instead of inheritance when appropriate. Abstract classes are composed of pure virtual functions. Override functions are specified.
-  --> DONE (9/12)
+  --> DONE: snake.h in get_Life() member (9/12)
 
 - 4-7) Overloaded functions allow the same function to operate on different parameters:
   One function is overloaded with different signatures for the same function name.
@@ -115,7 +115,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 - 4-8) Derived class functions override virtual base class functions:
   One member function in an inherited class overrides a virtual base class member function.
-  --> DONE (9/12) >>NOT YET
+  --> DONE (9/12)
 
 - 4-9) Templates generalize functions in the project:
   One function is declared with a template that allows it to accept a generic parameter.
@@ -125,24 +125,42 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 - 5-1) The project makes use of references in function declarations:
   At least two variables are defined as references, or two functions use pass-by-reference in the project code.
+  --> DONE (9/12)
+
 - 5-2) The project uses destructors appropriately:
   At least one class that uses unmanaged dynamically allocated memory, along with any class that otherwise needs to modify state upon the termination of an object, uses a destructor.
+  --> DONE (9/12)
+
 - 5-3) The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate:
   The project follows the Resource Acquisition Is Initialization pattern where appropriate, by allocating objects at compile-time, initializing objects when they are declared, and utilizing scope to ensure their automatic destruction.
+  --> DONE (9/12)
+
 - 5-4) The project follows the Rule of 5:
   For all classes, if any one of the copy constructor, copy assignment operator, move constructor, move assignment operator, and destructor are defined, then all of these functions are defined.
+  --> DONE (9/12)
+
 - 5-5) The project uses move semantics to move data, instead of copying it, where possible:
   For classes with move constructors, the project returns objects of that class by value, and relies on the move constructor, instead of copying the object.
+  --> DONE (9/12)
+
 - 5-6) The project uses smart pointers instead of raw pointers:
   The project uses at least one smart pointer: unique_ptr, shared_ptr, or weak_ptr. The project does not use raw pointers.
+  --> DONE (9/12)
 
 6. Concurrency: CRITERIA MEETS SPECIFICATIONS
 
 - 6-1) The project uses multithreading:
   The project uses multiple threads in the execution.
+  --> DONE in multi enemies member runs parallelly(9/13)
+
 - 6-2) A promise and future is used in the project:
   A promise and future is used to pass data from a worker thread to a parent thread in the project code.
+  --> DONE in multi enemies member runs (9/13)
+
 - 6-3) A mutex or lock is used in the project:
   A mutex or lock (e.g. std::lock_guard or `std::unique_lock) is used to protect data that is shared across multiple threads in the project code.
+  --> DONE in multi enemies member runs (9/13)
+
 - 6-4) A condition variable is used in the project:
   A std::condition_variable is used in the project code to synchronize thread execution.
+  --> DONE (9/13)
