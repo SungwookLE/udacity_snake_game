@@ -34,6 +34,7 @@ class Snake {
   float head_y;
   std::vector<SDL_Point> body;
   void Life();
+
   virtual int get_Life() { return Life_num; }
   void plus_Life() { Life_num += 1; }
 
@@ -41,7 +42,7 @@ private:
   
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell, std::shared_ptr<Barrier> barr);
-  int Life_num{0};
+  int Life_num{1};
   int count_hold{0};
   int turn;
 
