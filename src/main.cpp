@@ -6,7 +6,7 @@
 std::mutex Enemy::mtx;
 
 int main() {
-  int num_of_enemies = 3;
+  int num_of_enemies = 10;
 
   
   constexpr std::size_t kFramesPerSecond{60};

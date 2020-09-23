@@ -42,7 +42,7 @@ private:
   
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell, std::shared_ptr<Barrier> barr);
-  int Life_num{1};
+  int Life_num{2};
   int count_hold{0};
   int turn;
 
